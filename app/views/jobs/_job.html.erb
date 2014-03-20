@@ -1,0 +1,39 @@
+<%= div_for job do %>
+	<h3>
+		<%= link_to job.title, job %>
+		<% if ((Time.zone.now - job.created_at).to_i / 1.day) > 0 %>
+			<span class="actions">Posted <%= (Time.zone.now - job.created_at).to_i / 1.day %>&nbsp;day(s) ago by <span class="color_it_green"><%= Member.find(job.member_id).email %></span></span>
+		<% else %>
+			<span class="actions">Posted Today by: <span class="color_it_green"><%= Member.find(job.member_id).email %></span></span>
+		<% end %>
+		<% @selected = job.bids.where('bid_selected = ?', 1).first%>
+		<% if job.owned_by?(current_member) && @selected.nil? %>
+			<span class="actions">
+				<%= link_to "Edit This Stuff", edit_job_path(job) %>|
+				<%= link_to "Remove This Stuff", job, :confirm => "Are you sure?", :method => :delete %>
+			</span>
+		<% end %>
+	</h3>
+	Categories: |
+	<% job.categories.each do |jobcat| %>
+		<b><%= jobcat.name %> |</b>
+	<% end %>
+	&nbsp;Search Words:
+	<b><%= job.excerpt %></b><br />
+	<b><%= job.location %></b><br />
+
+	<% if job.bids.count > 0 %>
+		Current&nbsp;Bids On This Stuff:&nbsp;<b><%= job.bids.count %></b>
+		<!--% @selected = job.bids.find(:first, :conditions => ['bid_selected == 1']) % -->
+		<% if !@selected.nil? %>
+			<div class=bid_selected><%= @selected.name %>'s bid won!   -   Congratulations <%= @selected.name %>!&nbsp;&nbsp;<span class=not_accepting>Not Accepting New Bids!</span></div>
+		<% end %>
+	<% end %>
+	<% if job.comments.count > 0 and current_page?(jobs_path) %>
+		<span id="has_comments">
+			<%= link_to "*** Has Stuff Said About This Stuff...", job %>
+		</span>
+	<% end %>
+
+	<%= simple_format job.body %>
+<% end %>

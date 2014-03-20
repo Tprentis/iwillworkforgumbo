@@ -1,0 +1,38 @@
+<%= form_for [@job, @job.bids.new], :validate => true do |f| %>
+	<br />
+	<div class="field">
+		<%= f.label :name %>
+		<%= f.text_field :name %>
+	</div>
+
+	<div class="field">
+		<%= f.label :email %>
+		<%= f.text_field :email %>
+	</div>
+
+	<div class="field">
+		<%= f.label "State Your Case" %>
+		<%= f.text_area :body %>
+	</div>
+
+<div>
+	<div class="field">
+		<%= f.label "Your bid $$" %>
+		<%= f.text_field :bid_amount %>
+	</div>
+
+	<div class="field">
+		<%= f.label "per" %>
+		<%= f.select(:bid_per_rate, ['Job','Piece', 'Unit' , 'Hr.', 'Day', 'Week', 'Month', 'Year']) %>
+	</div>
+</div>
+
+	<div class="actions">
+    	<!-- %= submit_or_cancel(f) % -->
+    	<%= submit_tag 'Bid On This Stuff' %> or
+		<%= link_to 'Simmer Just A Bit!', '#', :onclick => "$('#new_bid').slideUp();$('#new_bid_link').slideDown();$('#bid_cancel_link').slideDown();" %>
+  	</div>
+
+
+
+<% end %>

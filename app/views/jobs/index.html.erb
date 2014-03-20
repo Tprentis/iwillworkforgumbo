@@ -1,0 +1,17 @@
+
+
+<div id="jobs">
+	<% if @jobs.count() > 0 %>
+		<%= paginate @jobs -%>
+		<%= render @jobs -%>
+		<%= paginate @jobs -%>
+	<% else %>
+		<%= link_to 'Sorry, no search results found....', jobs_path %>
+	<% end %>
+</div>
+<br />
+
+
+<% if logged_in? %>
+	<%= link_to 'I want some new stuff done.', new_job_path %>
+<% end %>

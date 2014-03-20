@@ -1,0 +1,8 @@
+$("#<%= dom_id(@comment) %>").remove();
+$("#<%= dom_id(@comment) %>").slideUp();
+<% if @job.comments.count == 0 -%>
+	$("#stuff_said_hdr").slideUp();
+<% end %>
+
+
+

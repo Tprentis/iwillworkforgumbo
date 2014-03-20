@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  member_id: 1
+  name: MyString
+  birthday: 2012-11-19
+  bio: MyText
+  twitter: MyString
+
+two:
+  member_id: 1
+  name: MyString
+  birthday: 2012-11-19
+  bio: MyText
+  twitter: MyString

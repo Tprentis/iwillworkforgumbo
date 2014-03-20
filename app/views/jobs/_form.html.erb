@@ -1,0 +1,46 @@
+<%= form_for @job, :validate => true do |f| %>
+  <% if @job.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@job.errors.count, "error") %> prohibited this job from being saved:</h2>
+
+      <ul>
+      <% @job.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :location %><br />
+    <%= f.text_field :location %>&nbsp;
+    <i>(hint: at least include a state abbreviation. -> i.e. CA, FL, IL, IA, NY, etc....)</i>
+  </div>
+
+   	<div class="field">
+		<%= f.label "Categories" %>
+		<% Category.all.each do |category| %>
+			<%= check_box_tag 'job[category_ids][]', category.id, @job.categories.include?(category)%>
+			<%= label_tag dom_id(category), category.name, :class => "check_box_label" %>
+		<% end %>
+	</div>
+
+  <div class="field">
+    <%= f.label "Search Words" %><br />
+    <%= f.text_field :excerpt %>
+  </div>
+  <div class="field">
+    <%= f.label "Stuff to be done" %><br />
+    <%= f.text_area :body %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag 'Let Folks Know About This Stuff' %> or
+	<%= link_to 'Simmer Just A Bit!', jobs_path %>
+  </div>
+
+<% end %>

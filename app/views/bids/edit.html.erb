@@ -1,0 +1,51 @@
+
+<%= form_for([@job, @bid]) do |f| %>
+
+This bid was created on: <%= @bid.created_at.strftime("%d %b. %Y") %><br/ ><br />
+
+
+<%= div_for @job do %>
+	<h3>
+		<%= @job.title %>
+	</h3>
+	Categories:
+	<% @job.categories.each do |jobcat| %>
+		<b><%= jobcat.name %></b>
+	<% end %>
+	&nbsp;Tags:
+	<b><%= @job.excerpt %></b><br />
+	<b><%= @job.bids.count %>&nbsp;Current&nbsp;Bids</b>
+	<%= simple_format @job.body %>
+<% end %>
+
+
+
+	<div class="field">
+		<%= f.label :name %>
+		<%= @bid.name %>
+	</div>
+
+	<div class="field">
+		<%= f.label :email %>
+		<%= @bid.email %>
+	</div>
+
+	<div class="field">
+		<%= f.label "State Your Case" %>
+		<%= @bid.body %>
+	</div>
+
+	<div class="field">
+		<%= f.label "Accept Bid" %>
+		<%= f.check_box :bid_selected %>
+	</div>
+
+ 	<div class="actions">
+	   <!-- %= submit_or_cancel(f) % -->
+	    <%= f.submit 'Submit your acceptance!' %> or
+		<%= link_to 'Simmer Just A Bit!', jobs_path %>
+ 	</div>
+
+
+<% end %>
+

@@ -1,0 +1,56 @@
+	<!DOCTYPE html>
+<html>
+
+<head>
+  <title>iWillWorkForGumbo</title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application", "rails.validations" -%>
+  <%= csrf_meta_tags %>
+
+</head>
+
+<body id="container">
+	<div style="float: right;"><%= link_to "Help", pages_help_path %></div>
+
+	<table><tr>
+		<td>
+		<div id="header">
+			<%= link_to image_tag("iWillWorkForGumbox.png"), jobs_path %>
+		</div>
+		</td>
+		<td>
+		<div id="member_bar">
+			<% if logged_in? %>
+				<b>Welcome <%= current_member.email -%></b> |
+				<%= link_to "Make New Stuff To Do", new_job_path %>|
+				<%= link_to "Edit Profile", edit_member_path(current_member) %>|
+				<%= link_to "Logout", logout_path %>
+			<% else %>
+				<%= link_to "Login", login_path %>&nbsp;or become a&nbsp;<%= link_to "New Member", new_member_path %>
+			<% end %><br />
+			<%= render 'jobs/search' %>
+
+		</div>
+		</td>
+	</tr></table>
+	<div id="main">
+
+	<!-- div id="flash">
+  		<% flash.each do |name, msg| %>
+    		<%= content_tag :div, msg, :id => "flash_#{name}" %>
+  		<% end %>
+	</div -->
+
+
+
+		<h2>Folks want stuff done - Now go bid on some of it.</h2>
+		<%= content_tag :p, notice, :class => 'notice' if notice.present? %>
+		<%= content_tag :p, alert, :class => 'alert' if alert.present? %>
+		<%= yield %>
+	</div>
+	<div id="footer">
+		<%= link_to "Soup's On...", jobs_path %>
+	</div>
+</body>
+
+</html>

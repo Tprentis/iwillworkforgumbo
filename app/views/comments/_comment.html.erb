@@ -1,0 +1,17 @@
+<div id="comments">
+  <div class="comment" id=<%= "comment_" + comment.id.to_s -%>>
+	  <table id="comments_table"><tr><td>
+	    <%= simple_format("#{Member.find(comment.created_by_member).email} said: &quot<i>#{comment.content}</i>&quot - #{comment.updated_at.strftime('%d %b %y - %H:%M')}")  -%>
+	  </td><td width="50px;">
+		<% if (@job.owned_by? current_member) or ( Member.find(comment.created_by_member) == current_member)  %>
+		<span class = "actions" >
+			<%= link_to '(Remove)',
+				job_comment_path(:job_id => @job, :id => comment),
+				:confirm => 'Are you sure',
+				:method => :delete, :remote => true
+			-%>
+		</span>
+		<% end %>
+	  	</td></tr></table>
+  	</div>
+</div>

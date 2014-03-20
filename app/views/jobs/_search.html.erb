@@ -1,0 +1,9 @@
+<%= form_tag search_jobs_path, :method => :get do %>
+	<p>
+		Search
+		<%= text_field_tag :keyword, params[:keyword] %>&nbsp;&nbsp;		
+		Category
+		<%= select_tag :category, options_for_select(Category.all.collect{ |c| [c.name, c.id] }.insert(0, '*All'), params[:category]), 
+		:onchange => "this.form.submit();", :remote => true  %>	
+	</p>
+<% end %>	

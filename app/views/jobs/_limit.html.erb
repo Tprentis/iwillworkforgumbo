@@ -1,0 +1,11 @@
+
+<%= form_tag(limit_jobs_path, :id => 'limit_form', :style => 'display:none') do %>
+<div class="field">	
+   	<%= label_tag :category, "Categories:" %>
+	<% for category in Category.all %>
+		<%= check_box_tag 'limit[]', category.id %>
+		<%= label_tag dom_id(category), category.name, :class => "check_box_label" %>	
+	<% end %> &nbsp;&nbsp;
+</div>
+
+<% end %>	

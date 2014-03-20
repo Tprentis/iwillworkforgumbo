@@ -1,0 +1,10 @@
+$('#flash').html("<%= escape_javascript raw(flash_display) %>");
+$("<%= escape_javascript render(:file => 'bids/new.html.erb') %>").insertAfter('#bids');
+$("#new_bid").validate();
+$("#new_bid").removeAttr("novalidate");
+$('#new_bid').slideDown();
+$('#new_bid_link').hide();
+$('#job_cancel_link').hide();
+$('#bid_cancel_link').hide();
+
+

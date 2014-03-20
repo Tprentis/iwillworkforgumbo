@@ -1,0 +1,9 @@
+$('#flash').html("<%= escape_javascript raw(flash_display) %>");
+$("<%= escape_javascript render(:file => 'comments/new.html.erb') %>").insertAfter('#comments');
+$("#new_comment").validate();
+$("#new_comment").removeAttr("novalidate");
+$('#new_comment').slideDown();
+$('#new_comment_link').hide();
+$('#job_cancel_link').hide();
+$('#comment_cancel_link').hide();
+

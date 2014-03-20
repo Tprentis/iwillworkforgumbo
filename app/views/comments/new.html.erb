@@ -1,0 +1,27 @@
+
+<div id="new_comment">
+<br/>
+<h2>Say Some New Stuff About This Stuff...</h2>
+
+<%= form_for [@commentable, @comment] do |f| %>
+	<% if @comment.errors.any? %>
+		<div class = "error_messages">
+			<h2>Please correct the following errors</h2>
+			<ul>
+				<% @comment.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<div class = "field">
+		<%= f.text_area :content %>
+	</div>
+	<div class = "actions">
+		<%= f.submit "Post This Stuff" %>
+		<%= link_to 'Simmer Just A Bit!', '#', :onclick => "$('#new_comment').slideUp();$('#new_comment_link').slideDown();$('#comment_cancel_link').slideDown();" %>
+
+	</div>
+<% end %>
+</div>

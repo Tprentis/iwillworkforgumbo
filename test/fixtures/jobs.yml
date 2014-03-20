@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: "Wanted: RoR coder for Sports Bar"
+  location: "Estero, FL"
+  excerpt: "ROR"
+  body: "Here is the first test for a job wanted"
+  published_at: 2012-11-19 09:46:08
+
+two:
+  title: "Needed - A Strong Ruby programmer"
+  location: "Naples, FL"
+  excerpt: "Ruby Programmer"
+  body: "We need a strong Ruby programmer to finish this shit up"
+  published_at: 2012-11-19 09:46:08

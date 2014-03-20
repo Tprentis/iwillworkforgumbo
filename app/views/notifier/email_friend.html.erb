@@ -1,0 +1,16 @@
+<html>
+	<body>
+		<p>
+			One of your friends, <%= @sender_name %>, 
+			thinks you might be interested in this job posted on <b>iWillWorkForGumbo.com</b>.
+		</p>
+
+		<p>
+			Come check this out: <strong><%= @job.title%></strong > 
+			at <%= job_url @job, :host => 'afternoon-mesa-2171.herokuapp.com' %>
+		</p>
+		<p>
+		<%= @job.body %>
+		</p>
+	</body>
+</html>	

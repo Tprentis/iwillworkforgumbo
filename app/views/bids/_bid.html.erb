@@ -1,0 +1,41 @@
+<%= div_for bid do %>
+	<h3>
+		<% if bid.bid_selected? %>
+			<span class = "bid_selected">
+				<%= bid.email %> - <%= bid.name %>'s bid for&nbsp;<%= number_to_currency(bid.bid_amount) %>&nbsp;per&nbsp;<%= bid.bid_per_rate %>&nbsp;created on <%= bid.created_at.strftime("%d %b. %Y")%>
+				was accepted!
+			</span>
+		<% else %>
+				<%= bid.email %> - <%=bid.name %>'s bid for&nbsp;<%= number_to_currency(bid.bid_amount) %>&nbsp;per&nbsp;<%= bid.bid_per_rate %>&nbsp;was created on <%= bid.created_at.strftime("%d %b. %Y")%>
+		<% end %>
+	</h3>
+
+		<% if bid.bid_selected? %>
+			<span class = "bid_selected">
+				<%= bid.body %>
+			</span>
+		<% else %>
+				<%= bid.body %>
+		<% end %>
+
+		<% @selected = @job.bids.where('bid_selected = ?', 1).first %>
+		<% if (@job.owned_by? current_member) && !bid.bid_selected? %>
+  			<p><span class = "actions" >
+			(Do you want to
+			<%= link_to '(Remove)',
+				job_bid_path(:job_id => @job, :id => bid),
+				:confirm => 'Are you sure',
+				:method => :delete, :remote => true
+			%>
+			<% if @selected.nil? %>
+				or
+				<%= link_to '(Accept)', edit_job_bid_path(:job_id => @job, :id => bid) %>
+			<% end %>
+			this bid?)
+			</span></p>
+		<% end %>
+
+
+
+
+<% end %>

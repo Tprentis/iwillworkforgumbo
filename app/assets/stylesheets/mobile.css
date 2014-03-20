@@ -1,0 +1,10 @@
+#main h3 .actions_mobile {
+/*  display: none; */ 
+  font-weight: normal;
+  font-size: 10px;
+  float: right;
+}
+
+/*#main h3:hover .actions{
+  display: inline;
+} */
