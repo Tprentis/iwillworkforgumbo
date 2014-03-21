@@ -48,7 +48,7 @@ IWillWorkForGumbo::Application.configure do
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
 
-  config.action_mailer.default_url_options = { :host => "iwillworkforumbo.herokuapp.com" }
+  config.action_mailer.default_url_options = { :host => "iwillworkforgumbo.herokuapp.com" }
   # Gmail SMTP server setup
 ActionMailer::Base.smtp_settings = {
   :address        => 'smtp.sendgrid.net',
