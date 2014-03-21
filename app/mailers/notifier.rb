@@ -1,6 +1,6 @@
 class Notifier < ActionMailer::Base
   include ActionView::Helpers::NumberHelper
-  default from: "hereisajob@iWillWorkForGumbo.com"
+  default from: "iWillWorkForGumbo@gmail.com"
 
 
   # Subject can be set in your I18n file at config/locales/en.yml
