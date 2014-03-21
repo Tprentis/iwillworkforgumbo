@@ -50,15 +50,15 @@ IWillWorkForGumbo::Application.configure do
 
   config.action_mailer.default_url_options = { :host => "iwillworkforumbo.herokuapps.com" }
   # Gmail SMTP server setup
-  ActionMailer::Base.smtp_settings = {
-    :address => "smtp.gmail.com",
-    :enable_starttls_auto => true,
-    :port => 587,
-    :authentication => :plain,
-    :user_name => "iWillWorkForGumbo@gmail.com",
-    :password => "$%uu91td%$"
-  }
-
+ActionMailer::Base.smtp_settings = {
+  :address        => 'smtp.sendgrid.net',
+  :port           => '587',
+  :authentication => :plain,
+  :user_name      => ENV['SENDGRID_USERNAME'],
+  :password       => ENV['SENDGRID_PASSWORD'],
+  :domain         => 'heroku.com',
+  :enable_starttls_auto => true
+}
   # Disable delivery errors, bad email addresses will be ignored
   config.action_mailer.raise_delivery_errors = true
  # Gmail SMTP server setup
