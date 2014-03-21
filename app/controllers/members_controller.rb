@@ -29,6 +29,6 @@ class MembersController < ApplicationController
 
 private
   def member_params
-    params.require(:member).permit(:email, :password, :password_confirmation)
+    params.require(:member).permit(:email, :password, :password_confirmation, :password_reset_token)
   end
 end
