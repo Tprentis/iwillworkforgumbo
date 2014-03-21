@@ -54,7 +54,7 @@ IWillWorkForGumbo::Application.configure do
     :enable_starttls_auto => true,
     :port => 587,
     :authentication => :plain,
-    :user_name => "iWillWorkForGumbo@gmail.com",
+    :user_name => "iwillworkforgumbo@gmail.com",
     :password => "$%uu91td%$"
   }
   # Disable delivery errors, bad email addresses will be ignored
@@ -65,7 +65,7 @@ IWillWorkForGumbo::Application.configure do
     :enable_starttls_auto => true,
     :port => 587,
     :authentication => :plain,
-    :user_name => "iWillWorkForGumbo@gmail.com",
+    :user_name => "iwillworkforgumbo@gmail.com",
     :password => "$%uu91td%$"
   }
 
