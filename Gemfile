@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 gem 'rails'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'rails_12factor'
+
 #gem 'client_side_validations'
 gem 'bootstrap-sass', '2.3.2.0'
 gem 'turbolinks'
