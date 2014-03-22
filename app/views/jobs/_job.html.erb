@@ -1,6 +1,6 @@
 <%= div_for job do %>
 	<h3>
-		<%= link_to job.title, job %>
+		<span class="job_title"><%= link_to job.title, job %></span>
 		<% if ((Time.zone.now - job.created_at).to_i / 1.day) > 0 %>
 			<span class="actions">Posted <%= (Time.zone.now - job.created_at).to_i / 1.day %>&nbsp;day(s) ago by <span class="color_it_green"><%= Member.find(job.member_id).email %></span></span>
 		<% else %>

@@ -45,6 +45,11 @@ tr {
 	height: 45px;
 }
 
+.job_title {
+  color: #f5b100; /*#D95E16; */
+  padding:0 2px;
+  text-decoration: underline;
+}
 .notice { color: #57cd24 /*#999966*/; }
 .alert  { color: #993333; }
 #error_explanation { color: #CC0000; }
