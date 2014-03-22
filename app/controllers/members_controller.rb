@@ -1,6 +1,7 @@
 class MembersController < ApplicationController
   before_filter :authenticate, :only => [:edit, :update]
 
+
   def new
     @member = Member.new
   end
@@ -31,4 +32,5 @@ private
   def member_params
     params.require(:member).permit(:email, :password, :password_confirmation)
   end
+
 end

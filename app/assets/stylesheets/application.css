@@ -45,8 +45,6 @@ tr {
 	height: 45px;
 }
 
-
-
 .notice { color: #57cd24 /*#999966*/; }
 .alert  { color: #993333; }
 #error_explanation { color: #CC0000; }

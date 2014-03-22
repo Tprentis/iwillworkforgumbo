@@ -5,7 +5,8 @@ class Member < ActiveRecord::Base
 
   validates :email, :uniqueness => true,
             :length => {:within => 5..50},
-            :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }
+            :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i },
+            :case_sensitive => false
 
   validates :password, :confirmation => true,
             :length => { :within => 4..20 },
@@ -19,6 +20,7 @@ class Member < ActiveRecord::Base
 
   before_create { generate_token(:auth_token) }
   before_save :encrypt_new_password
+  before_save :downcase_email
 
   def self.authenticate(email, password)
     member = find_by_email(email)
@@ -59,5 +61,8 @@ class Member < ActiveRecord::Base
       Digest::SHA1.hexdigest(string)
     end
 
+    def downcase_email
+      self.email = self.email.downcase if self.email.present?
+    end
 
 end
