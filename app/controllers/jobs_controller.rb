@@ -54,7 +54,7 @@ class JobsController < ApplicationController
     @job.published_at = DateTime.now
     respond_to do |format|
       if @job.save
-        format.html { redirect_to @job, notice: 'Your stuff you want done was successfully created.' }
+        format.html { redirect_to @job, notice: 'The stuff you want done was successfully created.' }
         format.json { render json: @job, status: :created, location: @job }
       else
         format.html { render action: "new" }
@@ -70,7 +70,7 @@ class JobsController < ApplicationController
 
     respond_to do |format|
       if @job.update_attributes(job_params)
-        format.html { redirect_to @job, notice: 'Your stuff you want done was successfully updated.' }
+        format.html { redirect_to @job, notice: 'The stuff you want done was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
