@@ -10,7 +10,7 @@
 
 	<div id="bids">
 	<% if @job.bids.count > 0 %>
-		<h3>Bids</h3>
+		<br/><h3>Bids</h3>
 		<%= render @job.bids.order('bid_per_rate ASC, bid_amount ASC')%>
 	<% end %>
 	</div>
