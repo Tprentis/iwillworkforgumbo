@@ -114,7 +114,7 @@ class JobsController < ApplicationController
         @jobs.order(created_at: :desc)
         @jobs = Kaminari.paginate_array(@jobs).page(params[:page]).per(4)
       else
-        @jobs = Job.order('created_at DESC').page(params[:page]).per(4)
+        @jobs = Job.order('updated_at DESC').page(params[:page]).per(4)
       end
     else
       @cat = Category.find(search_cat.to_i)
