@@ -2,11 +2,11 @@
 	<h3>
 		<% if bid.bid_selected? %>
 			<span class = "bid_selected">
-				<%= bid.email %> - <%= bid.name %>'s bid for&nbsp;<%= number_to_currency(bid.bid_amount) %>&nbsp;per&nbsp;<%= bid.bid_per_rate %>&nbsp;created on <%= bid.created_at.strftime("%d %b. %Y")%>
+				<%= bid.email %> - <%= bid.name %>'s bid for&nbsp;<%= number_to_currency(bid.bid_amount) %>&nbsp;per&nbsp;<%= bid.bid_per_rate %>&nbsp;created on <%= bid.updated_at.strftime("%d %b. %Y")%>
 				was accepted!
 			</span>
 		<% else %>
-				<%= bid.email %> - <%=bid.name %>'s bid for&nbsp;<%= number_to_currency(bid.bid_amount) %>&nbsp;per&nbsp;<%= bid.bid_per_rate %>&nbsp;was created on <%= bid.created_at.strftime("%d %b. %Y")%>
+				<%= bid.email %> - <%=bid.name %>'s bid for&nbsp;<%= number_to_currency(bid.bid_amount) %>&nbsp;per&nbsp;<%= bid.bid_per_rate %>&nbsp;was created on <%= bid.updated_at.strftime("%d %b. %Y")%>
 		<% end %>
 	</h3>
 
