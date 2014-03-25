@@ -110,16 +110,16 @@ class JobsController < ApplicationController
     if search_cat == 0
 
       if search_keyword > ""
-        @jobs = Job.where('UPPER(title) LIKE UPPER(?) OR UPPER(body) LIKE UPPER(?) OR UPPER(excerpt) LIKE UPPER(?) OR UPPER(location) LIKE UPPER(?)', search_condition, search_condition, search_condition, search_condition)
-        @jobs.order(updated_at: :desc)
+        @jobs = Job.where('UPPER(title) LIKE UPPER(?) OR UPPER(body) LIKE UPPER(?) OR UPPER(excerpt) LIKE UPPER(?) OR UPPER(location) LIKE UPPER(?)', search_condition, search_condition, search_condition, search_condition).order(updated_at: :desc)
+       # @jobs.order(updated_at: :desc)
         @jobs = Kaminari.paginate_array(@jobs).page(params[:page]).per(4)
       else
-        @jobs = Job.order('updated_at DESC').page(params[:page]).per(4)
+        @jobs = Job.order(updated_at: :desc).page(params[:page]).per(4)
       end
     else
       @cat = Category.find(search_cat.to_i)
-      @jobs = @cat.jobs.where('UPPER(title) LIKE UPPER(?) OR UPPER(body) LIKE UPPER(?) OR UPPER(excerpt) LIKE UPPER(?) OR UPPER(location) LIKE UPPER(?)', search_condition, search_condition, search_condition, search_condition)
-      @jobs.order(updated_at: :desc)
+      @jobs = @cat.jobs.where('UPPER(title) LIKE UPPER(?) OR UPPER(body) LIKE UPPER(?) OR UPPER(excerpt) LIKE UPPER(?) OR UPPER(location) LIKE UPPER(?)', search_condition, search_condition, search_condition, search_condition).order(updated_at: :desc)
+     # @jobs.order(updated_at: :desc)
       @jobs = Kaminari.paginate_array(@jobs).page(params[:page]).per(4)
     end
 
