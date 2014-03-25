@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.0.2'
+
 gem 'bootstrap-sass', '2.3.2.0'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'aws-sdk'
@@ -22,6 +23,9 @@ group :development, :test do
   gem 'rspec-rails'
 end
 
+group :production do
+  gem 'ruby', '2.0.0'
+end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
