@@ -132,7 +132,7 @@ private
   end
 
   def job_params
-    params.require(:job).permit(:title, :body, :excerpt, :location, :categories, {:category_ids => []} )
+    params.require(:job).permit(:title, :body, :excerpt, :location, :categories, {:category_ids => []}, :image)
   end
 
 end

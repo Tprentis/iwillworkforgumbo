@@ -15,7 +15,7 @@ IWillWorkForGumbo::Application.configure do
 
   config.action_mailer.default_url_options = { :host => "localhost:3000" }
   # Gmail SMTP server setup
-  ActionMailer::Base.smtp_settings = {
+ActionMailer::Base.smtp_settings = {
     :address => "smtp.gmail.com",
     :enable_starttls_auto => true,
     :port => 587,
@@ -23,6 +23,15 @@ IWillWorkForGumbo::Application.configure do
     :user_name => "iWillWorkForGumbo@gmail.com",
     :password => "$%uu91td%$"
   }
+
+config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => 'iwillworkforgumbo',
+      :access_key_id => 'AKIAIUFFHLD7YHTQEY6Q',
+      :secret_access_key => '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'
+    }
+}
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log

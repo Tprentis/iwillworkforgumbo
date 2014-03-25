@@ -49,18 +49,29 @@ IWillWorkForGumbo::Application.configure do
   # config.assets.precompile += %w( search.js )
 
   config.action_mailer.default_url_options = { :host => "iwillworkforgumbo.herokuapp.com" }
-  # Gmail SMTP server setup
-ActionMailer::Base.smtp_settings = {
-  :address        => 'smtp.sendgrid.net',
-  :port           => '587',
-  :authentication => :plain,
-  :user_name      => ENV['SENDGRID_USERNAME'],
-  :password       => ENV['SENDGRID_PASSWORD'],
-  :domain         => 'heroku.com',
-  :enable_starttls_auto => true
-}
-  # Disable delivery errors, bad email addresses will be ignored
   config.action_mailer.raise_delivery_errors = true
+  # Gmail SMTP server setup
+  ActionMailer::Base.smtp_settings = {
+    :address        => 'smtp.sendgrid.net',
+    :port           => '587',
+    :authentication => :plain,
+    :user_name      => ENV['SENDGRID_USERNAME'],
+    :password       => ENV['SENDGRID_PASSWORD'],
+    :domain         => 'heroku.com',
+    :enable_starttls_auto => true
+  }
+
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => ENV['AWS_BUCKET'],
+      :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+    }
+  }
+
+  # Disable delivery errors, bad email addresses will be ignored
+
  # Gmail SMTP server setup
 
   # Enable threaded mode
@@ -76,4 +87,5 @@ ActionMailer::Base.smtp_settings = {
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+
 end

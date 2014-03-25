@@ -10,6 +10,10 @@ class Job < ActiveRecord::Base
   has_many :bids, :dependent => :destroy
   has_many :comments, as: :commentable
 #  acts_as_taggable
+  has_attached_file :image,
+                    :styles => { :medium => "300X300#", :thumbnail => "75x75#" },
+                    :default_url => "/images/:style/missing.gif"
+  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
   scope :published, where("jobs.published_at IS NOT NULL")
   scope :draft, where("jobs.published_at IS NULL")

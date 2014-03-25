@@ -58,5 +58,7 @@ module IWillWorkForGumbo
     config.assets.version = '1.0'
     # Rails 4 stuff
     #config.active_record.whitelist_attributes = false
+
+
   end
 end

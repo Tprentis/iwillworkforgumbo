@@ -21,6 +21,12 @@
 	&nbsp;Search Words:
 	<b><%= job.excerpt %></b><br />
 	<b><%= job.location %></b><br />
+	<% unless job.image.url == "/images/original/missing.gif" %>
+		<div id="show_image">
+			<%= link_to image_tag(job.image.url(:thumbnail)), job.image.url(:original), :popup=>['original_image', 'height=700,width=900'] %><br />
+		</div>
+	<% end %>
+
 
 	<% if job.bids.count > 0 %>
 		Current&nbsp;Bids On This Stuff:&nbsp;<b><%= job.bids.count %></b>

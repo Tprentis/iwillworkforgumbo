@@ -1,4 +1,4 @@
-<%= form_for @job, :validate => true do |f| %>
+<%= form_for @job, html: { multipart: true }, :validate => true do |f| %>
   <% if @job.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@job.errors.count, "error") %> prohibited this job from being saved:</h2>
@@ -36,6 +36,16 @@
   <div class="field">
     <%= f.label "Stuff to be done" %><br />
     <%= f.text_area :body %>
+  </div>
+  <div class="field">
+
+  	<%= f.label "Attach a photo if you want" %><br />
+  	<%= f.file_field :image %>
+  	<div id="show_image">
+  		<% unless @job.image.url == "/images/original/missing.gif" %>
+			<%= image_tag @job.image.url(:thumbnail) %>
+		<% end %>
+	</div>
   </div>
 
   <div class="actions">
