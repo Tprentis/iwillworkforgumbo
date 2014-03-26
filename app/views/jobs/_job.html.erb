@@ -1,7 +1,7 @@
 <%= div_for job do %>
 	<% @selected = job.bids.where('bid_selected = ?', 1).first%>
 	<h3>
-		<% if (current_page?(jobs_path) || current_page?(search_jobs_path)) && !job.owned_by?(current_member) & !@selected %>
+		<% if (current_page?("/") || current_page?(jobs_path) || current_page?(search_jobs_path)) && !job.owned_by?(current_member) & !@selected %>
 			<span class="job_title"><%= link_to (job.title << " (click me to bid on this job)"), job %></span>
 		<% else %>
 			<span class="job_title"><%= link_to job.title, job %></span>
@@ -46,7 +46,7 @@
 		</span>
 	<% end %>
 	<% @body = job.body %>
-	<% if (current_page?(jobs_path) || current_page?(search_jobs_path)) && (job.body.size > 300) %>
+	<% if (current_page?("/") || current_page?(jobs_path) || current_page?(search_jobs_path)) && (job.body.size > 300) %>
 		<div>
 			<%= @body[0..299] %>&nbsp;<i><%= link_to "(more)..........", job %></i>
 		</div>
