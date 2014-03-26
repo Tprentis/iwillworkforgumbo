@@ -46,9 +46,9 @@
 		</span>
 	<% end %>
 	<% @body = job.body %>
-	<% if (current_page?(jobs_path) || current_page?(search_jobs_path)) && (job.body.size > 200) %>
+	<% if (current_page?(jobs_path) || current_page?(search_jobs_path)) && (job.body.size > 300) %>
 		<div>
-			<%= @body[0..199] %>&nbsp;<i><%= link_to "...............(more)", job %></i>
+			<%= @body[0..299] %>&nbsp;<i><%= link_to "...............(more)", job %></i>
 		</div>
 	<% else %>
 		<%= simple_format @body %>
