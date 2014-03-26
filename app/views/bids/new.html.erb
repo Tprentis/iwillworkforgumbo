@@ -4,24 +4,24 @@
 	<h3>Place Your Bid On This Stuff</h3>
 	<br />
 	<div class="field">
-		<%= f.label :name %>
+		<%= f.label "Your name" %>
 		<%= f.text_field :name %>
 	</div>
 
 	<div class="field">
-		<%= f.label :email %>
+		<%= f.label "Your email" %>
 		<%= f.text_field :email %>
 	</div>
 
 	<div class="field">
-		<%= f.label "State Your Case" %>
+		<%= f.label "What ingredients and skills can you bring to the table?" %>
 		<%= f.text_area :body %>
 	</div>
 
 <div>
 	<div class="field">
-		<%= f.label "Your bid $$" %>
-		<%= f.text_field :bid_amount %>
+		<%= f.label "Your bid in $$ " %>
+		<%= f.text_field :bid_amount %>&nbsp;(Don't key $ or commas, Just use numbers i.e.  10 or 10.00)
 	</div>
 
 	<div class="field">

@@ -1,6 +1,7 @@
 <%= div_for job do %>
+	<% @selected = job.bids.where('bid_selected = ?', 1).first%>
 	<h3>
-		<% if current_page?(jobs_path) && !job.owned_by?(current_member) %>
+		<% if (current_page?(jobs_path) || current_page?(search_jobs_path)) && !job.owned_by?(current_member) & !@selected %>
 			<span class="job_title"><%= link_to (job.title << " (click me to bid on this job)"), job %></span>
 		<% else %>
 			<span class="job_title"><%= link_to job.title, job %></span>
@@ -10,7 +11,7 @@
 		<% else %>
 			<span class="actions">Posted/Updated Today by: <span class="color_it_green"><%= Member.find(job.member_id).email %></span></span>
 		<% end %>
-		<% @selected = job.bids.where('bid_selected = ?', 1).first%>
+
 		<% if job.owned_by?(current_member) && @selected.nil? %>
 			<span class="actions">
 				<%= link_to "Edit This Stuff", edit_job_path(job) %>|
@@ -44,6 +45,13 @@
 			<%= link_to "*** Click Here To See Stuff Said About This Stuff...", job %>
 		</span>
 	<% end %>
+	<% @body = job.body %>
+	<% if (current_page?(jobs_path) || current_page?(search_jobs_path)) && (job.body.size > 200) %>
+		<div>
+			<%= @body[0..199] %>&nbsp;<i><%= link_to "...............(more)", job %></i>
+		</div>
+	<% else %>
+		<%= simple_format @body %>
+	<% end %>
 
-	<%= simple_format job.body %>
 <% end %>
