@@ -1,5 +1,5 @@
 $('#flash').html("<%= escape_javascript raw(flash_display) %>");
-$("<%= escape_javascript render(:file => 'bids/new.html.erb') %>").insertAfter('#bids');
+$("<%= escape_javascript render(:file => 'bids/new.html.erb') %>").insertBefore('#bids');
 $("#new_bid").validate();
 $("#new_bid").removeAttr("novalidate");
 $('#new_bid').slideDown();

@@ -6,7 +6,8 @@ class BidsController < ApplicationController
     @bid = @job.bids.new(bid_params)
     if @bid.save
       respond_to do |format|
-        format.html {redirect_to @job, :notice => 'Your bid is recorded, thank you!'}
+        @notice =
+        format.html {redirect_to @job, :notice => 'Your bid is recorded and the job owner was emailed your bid. Thank you!'}
         format.js
       end
     else

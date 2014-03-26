@@ -4,13 +4,18 @@
 
 	<% @selected = @job.bids.where('bid_selected = ?', 1).first %>
 	<% if @selected.blank? %>
-		<%= link_to 'Email a friend', '#', :onclick => "$('#notify_friend_form').slideDown()" %>
+		<%= link_to 'Email a friend', '#', :id => 'email_friend_link', :onclick => "$('#notify_friend_form').slideDown();" %>
 		<%= render 'notify_friend' %>
+	<% end %>
+
+	<% if @selected.nil? && !@job.owned_by?(current_member) %>
+		<br/>
+		<%= link_to 'Bid On This Stuff', new_job_bid_path(@job, :format => :js), :remote => true, :id => 'new_bid_link' %>&nbsp;
 	<% end %>
 
 	<div id="bids">
 	<% if @job.bids.count > 0 %>
-		<br/><h3>Bids</h3>
+		<br/><h3>Current Bids</h3>
 		<%= render @job.bids.order('bid_per_rate ASC, bid_amount ASC')%>
 	<% end %>
 	</div>
@@ -22,11 +27,7 @@
 	<% end %>
 	</div>
 
-	<%  @selected = @job.bids.where('bid_selected = ?', 1).first %>
-	<% if @selected.nil? && !@job.owned_by?(current_member) %>
-		<br/>
-		<%= link_to 'Bid On This Stuff', new_job_bid_path(@job, :format => :js), :remote => true, :id => 'new_bid_link' %>&nbsp;
-	<% end %>
+
 
 	<% if logged_in? %>
 		<%= link_to 'Say Something About This Stuff', new_job_comment_path(@job, :format => :js), :remote => true, :id => 'new_comment_link' %>&nbsp;

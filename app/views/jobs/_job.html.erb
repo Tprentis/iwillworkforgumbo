@@ -1,6 +1,10 @@
 <%= div_for job do %>
 	<h3>
-		<span class="job_title"><%= link_to job.title, job %></span>
+		<% if current_page?(jobs_path) && !job.owned_by?(current_member) %>
+			<span class="job_title"><%= link_to (job.title << " (click me to bid on this job)"), job %></span>
+		<% else %>
+			<span class="job_title"><%= link_to job.title, job %></span>
+		<% end %>
 		<% if ((Time.zone.now - job.updated_at).to_i / 1.day) > 0 %>
 			<span class="actions">Posted/Updated <%= (Time.zone.now - job.updated_at).to_i / 1.day %>&nbsp;day(s) ago by <span class="color_it_green"><%= Member.find(job.member_id).email %></span></span>
 		<% else %>
