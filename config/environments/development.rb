@@ -24,14 +24,14 @@ ActionMailer::Base.smtp_settings = {
     :password => "$%uu91td%$"
   }
 
-config.paperclip_defaults = {
+  config.paperclip_defaults = {
     :storage => :s3,
     :s3_credentials => {
-      :bucket => 'iwillworkforgumbo',
-      :access_key_id => 'AKIAIUFFHLD7YHTQEY6Q',
-      :secret_access_key => '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'
+      :bucket => ENV['AWS_BUCKET'],
+      :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
     }
-}
+  }
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
