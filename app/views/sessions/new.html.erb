@@ -1,10 +1,10 @@
-<h1>Login</h1>
+<h1>Login As A Registered Member</h1>
 <%= form_tag session_path do %>
 	<div class="field">
 		<%= label_tag :email %><br />
 		<%= text_field_tag :email %>
 	</div>
-	
+
 	<div class="field">
 		<%= label_tag :password %><br />
 		<%= password_field_tag :password %>
@@ -13,9 +13,9 @@
 	<div class="field">
     	<%= label_tag :remember_me %>
     	<%= check_box_tag :remember_me, 1, params[:remember_me] %>
-  	</div>  
-	
+  	</div>
+
 	<div class="actions">
 		<%= submit_tag 'Login' %>
 	</div>
-<% end %>				
+<% end %>

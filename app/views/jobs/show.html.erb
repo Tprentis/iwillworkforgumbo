@@ -1,10 +1,10 @@
 <div id="show_job">
 
 	<%= render @job -%>
-
+	<br />
 	<% @selected = @job.bids.where('bid_selected = ?', 1).first %>
 	<% if @selected.blank? %>
-		<%= link_to 'Email a friend', '#', :id => 'email_friend_link', :onclick => "$('#notify_friend_form').slideDown();" %>
+		<%= link_to 'Email A Friend About This Stuff', '#', :id => 'email_friend_link', :onclick => "$('#notify_friend_form').slideDown();" %>
 		<%= render 'notify_friend' %>
 	<% end %>
 

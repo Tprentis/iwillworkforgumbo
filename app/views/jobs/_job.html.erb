@@ -56,9 +56,9 @@
 	<div id="job_body">
 		<% @body = job.body %>
 		<% if (current_page?("/") || current_page?(jobs_path) || current_page?(search_jobs_path)) && (job.body.size > 300) %>
-				--->>&nbsp;<%= @body[0..299] %>&nbsp;<i><%= link_to "(more...)", job %></i>
+					&rarr;&nbsp;<%= @body[0..299] %>&nbsp;<i><%= link_to "(more...)", job %></i>
 		<% else %>
-			<%= simple_format "---> "<<@body %>
+			&rarr;&nbsp;<%= @body %>
 		<% end %>
 	</div>
 	<% if (current_page?("/") || current_page?(jobs_path) || current_page?(search_jobs_path)) %>

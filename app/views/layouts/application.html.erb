@@ -26,7 +26,7 @@
 				<%= link_to "Edit Your Member Profile", edit_member_path(current_member) %>|
 				<%= link_to "Logout", logout_path %>
 			<% else %>
-				<%= link_to "Login", login_path %>&nbsp;or become a&nbsp;<%= link_to "New Member", new_member_path %>
+				<%= link_to "Login", login_path %>&nbsp;or become a&nbsp;<%= link_to "New Registered Member", new_member_path %>
 			<% end %><br />
 			<%= render 'jobs/search' %>
 
