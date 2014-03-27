@@ -47,7 +47,7 @@
 		<% end %>
 
 	<% end %>
-	<% if job.comments.count > 0 and current_page?(jobs_path) %>
+	<% if job.comments.count > 0 and (current_page?("/") || current_page?(jobs_path) || current_page?(search_jobs_path)) %>
 		<span id="has_comments">
 			<%= link_to "(click me to see stuff said about this stuff...)", job %>
 		</span>
