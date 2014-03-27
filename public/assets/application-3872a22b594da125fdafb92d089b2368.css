@@ -51,42 +51,90 @@ tr {
   text-decoration: underline;
 }
 
-.notice { color: #57cd24 /*#999966*/; }
-.alert  { color: #993333; }
-#error_explanation { color: #CC0000; }
-
-#bids { color: #333333; }
-.bid_selected { color: #009933; }
-
-#has_comments {
-	color: #999999;
-	font-style: italic;
+#show_image {
+  padding: 10px;
 }
-#comments {
-  color: #999999;
-  width: 90%;
-  word-wrap: break-word;
-  -moz-border-radius: 8px;
-  border-radius: 8px;
-  margin-bottom: 0px;
-  margin-left: 10px;
-  margin-right: 100px;
-  margin-top: 0px;
-  padding-bottom: 2px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 10px;
-  }
 
-#comments_table  {
+.job_wrapper {
  border: 2px solid #999999;
- width: 110%;
- padding: 5px;
+  width: 100%;
+  word-wrap: break-word;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 5px;
+  margin-bottom: 10px;
  -moz-border-radius: 20px;
  -webkit-border-radius: 20px;
  -khtml-border-radius: 20px;
  border-radius: 20px;
+
 }
+
+.notice { color: #57cd24 /*#999966*/; }
+.alert  { color: #993333; }
+#error_explanation { color: #CC0000; }
+
+#job_body {
+  color: #333333;
+  width: 90%;
+  word-wrap: break-word;
+  margin-bottom: 0px;
+  margin-left: 10px;
+  margin-right: auto;
+  margin-top: 0px;
+  padding-bottom: 2px;
+  padding-left: 20px;
+  padding-right: 10px;
+  padding-top: 10px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  }
+
+
+#bids { color: #333333; }
+.bid_selected {
+	color: #009933;
+	margin-left: 20px;
+	}
+
+#current_bids {
+	margin-left: 20px;
+}
+#has_comments {
+	color: #999999;
+	font-style: italic;
+	margin-left: 20px;
+}
+#stuff_said_hdr {
+	 color: #999999;
+	 font-size: 10px;
+	 margin-left: 30px;
+}
+#comments {
+
+	  color: #999999;
+	  border: 2px solid #999999;
+	  width: 90%;
+	  word-wrap: break-word;
+	  -moz-border-radius: 8px;
+	  border-radius: 8px;
+	  margin-bottom: 10px;
+  	  margin-left: auto ;
+      margin-right: auto ;
+	  margin-top: 0px;
+	  padding-bottom: 0px;
+	  padding-left: 0px;
+	  padding-right: 0px;
+	  padding-top: 0px;
+  }
+
+#comments_table  {
+ width: 100%;
+ padding: 5px;
+ border: none;
+}
+
 /*#header, #main, #footer {
   width: 800px;
 }*/
