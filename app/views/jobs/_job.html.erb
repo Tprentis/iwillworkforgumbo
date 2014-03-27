@@ -1,5 +1,8 @@
-<%= div_for job do %>
+<%= div_for job do  %>
 	<% @selected = job.bids.where('bid_selected = ?', 1).first%>
+	<% if (current_page?("/") || current_page?(jobs_path) || current_page?(search_jobs_path)) %>
+		<div class="job_wrapper">
+	<% end %>
 	<h3>
 		<% if (current_page?("/") || current_page?(jobs_path) || current_page?(search_jobs_path)) && !job.owned_by?(current_member) & !@selected %>
 			<span class="job_title"><%= link_to (job.title << " (click me to bid on this job)"), job %></span>
@@ -14,7 +17,7 @@
 
 		<% if job.owned_by?(current_member) && @selected.nil? %>
 			<span class="actions">
-				<%= link_to "Edit This Stuff", edit_job_path(job) %>|
+				<%= link_to "Edit/Update This Stuff", edit_job_path(job) %>|
 				<%= link_to "Remove This Stuff", job, :confirm => "Are you sure?", :method => :delete %>
 			</span>
 		<% end %>
@@ -25,7 +28,8 @@
 	<% end %>
 	&nbsp;Search Words:
 	<b><%= job.excerpt %></b><br />
-	<b><%= job.location %></b><br />
+
+	Location:&nbsp;<b><%= job.location %></b>
 	<% unless job.image.url == "/images/original/missing.gif" %>
 		<div id="show_image">
 			<%= link_to image_tag(job.image.url(:thumbnail)), job.image.url(:original), :popup=>['original_image', 'height=700,width=900'] %><br />
@@ -34,24 +38,30 @@
 
 
 	<% if job.bids.count > 0 %>
-		Current&nbsp;Bids On This Stuff:&nbsp;<b><%= job.bids.count %></b>
-		<!--% @selected = job.bids.find(:first, :conditions => ['bid_selected == 1']) % -->
+		<span id="current_bids">
+			Current Bids On This Stuff:&nbsp;<b><%= job.bids.count %></b>
+			<!--% @selected = job.bids.find(:first, :conditions => ['bid_selected == 1']) % -->
+		</span>
 		<% if !@selected.nil? %>
 			<div class=bid_selected><%= @selected.name %>'s bid won!   -   Congratulations <%= @selected.name %>!&nbsp;&nbsp;<span class=not_accepting>Not Accepting New Bids!</span></div>
 		<% end %>
+
 	<% end %>
 	<% if job.comments.count > 0 and current_page?(jobs_path) %>
 		<span id="has_comments">
-			<%= link_to "*** Click Here To See Stuff Said About This Stuff...", job %>
+			<%= link_to "(click me to see stuff said about this stuff...)", job %>
 		</span>
 	<% end %>
-	<% @body = job.body %>
-	<% if (current_page?("/") || current_page?(jobs_path) || current_page?(search_jobs_path)) && (job.body.size > 300) %>
-		<div>
-			<%= @body[0..299] %>&nbsp;<i><%= link_to "(more)..........", job %></i>
-		</div>
-	<% else %>
-		<%= simple_format @body %>
-	<% end %>
 
+	<div id="job_body">
+		<% @body = job.body %>
+		<% if (current_page?("/") || current_page?(jobs_path) || current_page?(search_jobs_path)) && (job.body.size > 300) %>
+				--->>&nbsp;<%= @body[0..299] %>&nbsp;<i><%= link_to "(more...)", job %></i>
+		<% else %>
+			<%= simple_format "---> "<<@body %>
+		<% end %>
+	</div>
+	<% if (current_page?("/") || current_page?(jobs_path) || current_page?(search_jobs_path)) %>
+		</div> <!-- class="job_wrapper" -->
+	<% end %>
 <% end %>

@@ -20,7 +20,7 @@
 	<% end %>
 	</div>
 
-	<div id="comments">
+	<div id="zzcomments">
 	<% if @job.comments.count > 0 %>
 		<h3 id="stuff_said_hdr">Stuff Said About This Stuff...</h3>
 		<%= render @job.comments.order('updated_at DESC') %>
