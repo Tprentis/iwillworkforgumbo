@@ -4,11 +4,15 @@ gem 'rails', '4.0.2'
 gem 'rake', '10.2.1'
 gem 'bootstrap-sass', '2.3.2.0'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+gem 'paperclip-rack', require: 'paperclip/rack'
+gem 'debugger'
+
 gem 'aws-sdk'
 gem 'cocaine'
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+
 gem 'rails_12factor'
 
 #gem 'client_side_validations'
@@ -19,6 +23,7 @@ gem 'turbolinks'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
+
 group :development, :test do
   gem 'rspec-rails'
 end

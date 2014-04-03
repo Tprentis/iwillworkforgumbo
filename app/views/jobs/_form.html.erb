@@ -21,6 +21,47 @@
     <i>(hint: at least include a state abbreviation. -> i.e. CA, FL, IL, IA, NY, etc....)</i>
   </div>
 
+<div>
+	<% if @ct < MAX_ASSETS %>
+		<table class="tableassets">
+			<th>Upload A Maximum of <%= MAX_ASSETS %> Images</th>
+			<tr>
+				<%= f.fields_for :assets do |asset| %>
+					<td>
+						<%= asset.file_field :image  %>
+					</td>
+				<% end %>
+			</tr>
+		</table>
+	<% end %>
+
+	<% unless @ct == 0 %>
+		<table class="tableassets">
+
+			<th>
+				Uploaded Images
+			</th>
+			<tr>
+			  	<%= div_for @job.assets.reload do |a| %>
+					<td>
+						<table class="tableassets">
+							<tr><td>
+						<%= link_to(image_tag(a.image.url(:thumbnail)),a.image.url(:original))  %>
+							</tr></td>
+							<tr><td>
+						<%= link_to "(Remove)",job_asset_path(@job.id, a.id), data: {confirm: 'Are you sure?'}, :method => :delete %>
+							</tr></td>
+						</table>
+
+					</td>
+				<% end %>
+
+			</tr>
+	</table>
+	<% end %>
+</div>
+
+
    	<div class="field">
 		<%= f.label "Categories" %>
 		<% Category.all.each do |category| %>
@@ -37,16 +78,8 @@
     <%= f.label "Stuff to be done" %><br />
     <%= f.text_area :body %>
   </div>
-  <div class="field">
 
-  	<%= f.label "Attach a photo if you want" %><br />
-  	<%= f.file_field :image %>
-  	<div id="show_image">
-  		<% unless @job.image.url == "/images/original/missing.gif" %>
-			<%= image_tag @job.image.url(:thumbnail) %>
-		<% end %>
-	</div>
-  </div>
+
 
   <div class="actions">
     <%= submit_tag 'Let Folks Know About This Stuff' %> or

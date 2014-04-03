@@ -1,3 +1,4 @@
+*= require jquery.fileupload-ui
 
 * {
   margin: 0 auto;
@@ -9,7 +10,7 @@ body {
   color: #333;
 }
 
-body, p, ol, ul, td {
+body, p, ol, ul {
   font-family: "Comic Sans MS", verdana, arial, helvetica, sans-serif;
   font-size:   13px;
   line-height: 18px;
@@ -21,9 +22,17 @@ pre {
   font-size: 11px;
 }
 
-table {
-	padding-top: 0px;
-	width: 100%;
+
+
+
+
+.tableassets {
+		table {
+			border-collapse: collapse;
+			}
+		 td {
+			padding: 5px;
+			}
 }
 
 p {
@@ -50,6 +59,7 @@ tr {
   padding:0 2px;
   text-decoration: underline;
 }
+
 
 #show_image {
   padding: 10px;

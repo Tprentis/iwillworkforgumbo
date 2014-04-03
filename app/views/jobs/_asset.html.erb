@@ -1,0 +1,13 @@
+<div class="asset">
+  <% new_or_existing = Asset.new_record? ? 'new' : 'existing' %>
+  <% prefix = "job[#{new_or_existing}_asset_attributes][]" %>
+
+  <% fields_for prefix, asset do |asset_form| -%>
+    <p>
+      Asset: <%= asset_form.file_field :file %>
+      <%= link_to "remove", :onclick => "$(this).up('.asset').remove()" %>
+    </p>
+<% end -%>
+</div>
+
+

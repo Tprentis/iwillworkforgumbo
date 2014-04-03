@@ -34,8 +34,9 @@ class JobsController < ApplicationController
   # GET /jobs/new
   # GET /jobs/new.json
   def new
-    @job = Job.new
-
+   @job = Job.new
+   @ct = @job.assets.count
+   (MAX_ASSETS - @ct).times {@job.assets.build}
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @job }
@@ -45,6 +46,8 @@ class JobsController < ApplicationController
   # GET /jobs/1/edit
   def edit
     @job = current_member.jobs.find(params[:id])
+    @ct = @job.assets.count
+    (MAX_ASSETS - @ct).times {@job.assets.build}
   end
 
   # POST /jobs
@@ -52,6 +55,8 @@ class JobsController < ApplicationController
   def create
     @job = current_member.jobs.new(job_params)
     @job.published_at = DateTime.now
+
+
     respond_to do |format|
       if @job.save
         format.html { redirect_to @job, notice: 'The stuff you want done was successfully created.' }
@@ -66,6 +71,7 @@ class JobsController < ApplicationController
   # PUT /jobs/1
   # PUT /jobs/1.json
   def update
+
     @job = current_member.jobs.find(params[:id])
 
     respond_to do |format|
@@ -132,7 +138,8 @@ private
   end
 
   def job_params
-    params.require(:job).permit(:title, :body, :excerpt, :location, :categories, {:category_ids => []}, :image)
+#    params.require(:job).permit(:title, :body, :excerpt, :location, :categories, {:category_ids => []}, assets_attributes: [:image => [:id, :image_file_name]])
+    params.require(:job).permit!
   end
 
 end

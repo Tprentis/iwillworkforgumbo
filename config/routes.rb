@@ -12,6 +12,8 @@ IWillWorkForGumbo::Application.routes.draw do
     end
     resources :bids
     resources :comments
+    resources :assets
+
   end
 
   resources :members do

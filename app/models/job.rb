@@ -9,17 +9,40 @@ class Job < ActiveRecord::Base
 
   has_many :bids, :dependent => :destroy
   has_many :comments, as: :commentable
+  has_many :assets, :dependent => :destroy
+  accepts_nested_attributes_for :assets, allow_destroy: true
+
+  after_update :save_assets
 #  acts_as_taggable
-  has_attached_file :image,
-                    :styles => { :medium => "300X300#", :thumbnail => "75x75#" },
-                    :default_url => "/images/:style/missing.gif"
-  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+
 
   scope :published, where("jobs.published_at IS NOT NULL")
   scope :draft, where("jobs.published_at IS NULL")
   scope :recent, lambda { published.where("jobs.published_at > ?", 1.week.ago.to_date) }
   scope :where_title, lambda { |term| where("jobs.title LIKE ?", "%#{term}%")}
 
+  def new_asset_attributes=(asset_attributes)
+    asset_attributes.each do |attributes|
+      assets.build(attributes)
+    end
+  end
+
+  def existing_asset_attributes=(asset_attributes)
+    assets.reject(&:new_record?).each do |asset|
+      attributes = asset_attributes[asset.id.to_s]
+      if attributes
+        asset.attributes = attributes
+      else
+        asset.delete(asset)
+      end
+    end
+  end
+
+  def save_assets
+    assets.each do |asset|
+      asset.save(:validate => false)
+    end
+  end
 
   def long_title
     "#{title} - #{published_at}"

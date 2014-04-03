@@ -29,12 +29,20 @@
 	&nbsp;Search Words:
 	<b><%= job.excerpt %></b><br />
 
-	Location:&nbsp;<b><%= job.location %></b>
-	<% unless job.image.url == "/images/original/missing.gif" %>
-		<div id="show_image">
-			<%= link_to image_tag(job.image.url(:thumbnail)), job.image.url(:original), :popup=>['original_image', 'height=700,width=900'] %><br />
-		</div>
-	<% end %>
+	Location:&nbsp;<b><%= job.location %></b><br />
+
+
+
+	<table class="tableassets">
+		<tr>
+		  	<%= div_for job.assets do |a| %>
+				<td>
+					<%= link_to(image_tag(a.image.url(:thumbnail)),a.image.url(:medium))  %><br />
+				</td>
+			<% end %>
+		</tr>
+	</table>
+
 
 
 	<% if job.bids.count > 0 %>
@@ -61,6 +69,8 @@
 			&rarr;&nbsp;<%= @body %>
 		<% end %>
 	</div>
+
+
 	<% if (current_page?("/") || current_page?(jobs_path) || current_page?(search_jobs_path)) %>
 		</div> <!-- class="job_wrapper" -->
 	<% end %>
