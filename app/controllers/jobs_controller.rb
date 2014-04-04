@@ -35,8 +35,8 @@ class JobsController < ApplicationController
   # GET /jobs/new.json
   def new
    @job = Job.new
-   @ct = @job.assets.size
-  (MAX_ASSETS - @ct.to_i).times {@job.assets.build}
+   @ct = @job.assets.count
+   (MAX_ASSETS - @ct).times {@job.assets.build}
 
     respond_to do |format|
       format.html # new.html.erb
@@ -47,9 +47,9 @@ class JobsController < ApplicationController
   # GET /jobs/1/edit
   def edit
     @job = current_member.jobs.find(params[:id])
-    @ct = @job.assets.size
+    @ct = @job.assets.count
 
-    (MAX_ASSETS - @ct.to_i).times {@job.assets.build}
+    (MAX_ASSETS - @ct).times {@job.assets.build}
 
   end
 

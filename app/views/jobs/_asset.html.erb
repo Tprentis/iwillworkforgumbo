@@ -1,13 +1,45 @@
-<div class="asset">
-  <% new_or_existing = Asset.new_record? ? 'new' : 'existing' %>
-  <% prefix = "job[#{new_or_existing}_asset_attributes][]" %>
 
-  <% fields_for prefix, asset do |asset_form| -%>
-    <p>
-      Asset: <%= asset_form.file_field :file %>
-      <%= link_to "remove", :onclick => "$(this).up('.asset').remove()" %>
-    </p>
-<% end -%>
-</div>
+<table class="tableassets">
+	<th>
+		You Can Upload
+		<% if ((MAX_ASSETS - @ct.to_i) < MAX_ASSETS) %>
+			An Additional
+		<% end %>
+			<%= (MAX_ASSETS - @ct.to_i) %> Image(s)
+	</th>
+
+	<tr>
+	  	<%= div_for @job.assets do |asset| %>
+			<% unless asset.new_record? %>
+				<td>
+					<table class="tableassets">
+						<tr><td>
+					<%= link_to(image_tag(asset.image.url(:thumbnail)),asset.image.url(:original))  %>
+						</td></tr>
+
+						<tr><td>
+					<%= link_to "(Remove)",job_asset_path(@job.id, asset.id), data: {confirm: 'Are you sure?'}, :method => :delete, :onclick => "$(this).up('.asset').remove()" %>
+						</td></tr>
+
+					</table>
+				</td>
+			<% end %>
+		<% end %>
 
 
+		<%= f.fields_for :assets do |asset| %>
+	  		<% if asset.object.new_record? %>
+	  		<td>
+	  			<table class="tableassets">
+	  				<tr><td>
+	  					<%= asset.file_field :image %>
+	  				</td></tr>
+	  				<tr><td>
+
+	  				</td></tr>
+	  			</table>
+	  		</td>
+	  		<% end %>
+	  	<% end %>
+	</tr>
+</table>

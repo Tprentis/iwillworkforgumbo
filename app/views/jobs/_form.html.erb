@@ -40,58 +40,9 @@
     <%= f.text_area :body %>
   </div>
 
-
-<div>
-	<% if @ct.to_i < MAX_ASSETS %>
-		<table class="tableassets">
-			<th>
-				You Can Upload
-				<% if ((MAX_ASSETS - @ct.to_i) < MAX_ASSETS) %>
-					An Additional
-				<% end %>
-					<%= (MAX_ASSETS - @ct.to_i) %> Image(s)
-			</th>
-
-			<tr>
-				<%= f.fields_for :assets do |asset| %>
-
-						<% if asset.object.new_record? %>
-							<td>
-								<%= asset.file_field :image  %>
-							</td>
-						<% end %>
-
-				<% end %>
-			</tr>
-		</table>
-	<% end %>
-
-	<% unless @ct.to_i == 0 %>
-		<table class="tableassets">
-			<th>
-				Uploaded Images
-			</th>
-			<tr>
-			  	<%= div_for @job.assets.reload do |asset| %>
-					<td>
-						<table class="tableassets">
-
-							<tr><td>
-						<%= link_to(image_tag(asset.image.url(:thumbnail)),asset.image.url(:original))  %>
-							</tr></td>
-							<tr><td>
-						<%= link_to "(Remove)",job_asset_path(@job.id, asset.id), data: {confirm: 'Are you sure?'}, :method => :delete %>
-							</tr></td>
-
-						</table>
-
-					</td>
-				<% end %>
-
-			</tr>
-	</table>
-	<% end %>
-</div>
+  <div class="field">
+	<%= render "asset", :f => f %>
+  </div>
 
 
   <div class="actions">
