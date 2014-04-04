@@ -5,9 +5,9 @@ class AssetsController < ApplicationController
     @asset.image = nil
     @asset.save
     @asset.destroy
-    @job.assets.reload
+
     respond_to do |format|
-      format.html { redirect_to job_assets_path }
+      format.html { redirect_to :back}
       format.json { head :no_content }
     end
   end

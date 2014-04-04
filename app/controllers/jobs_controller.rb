@@ -35,8 +35,9 @@ class JobsController < ApplicationController
   # GET /jobs/new.json
   def new
    @job = Job.new
-   @ct = @job.assets.count
-   (MAX_ASSETS - @ct).times {@job.assets.build}
+   @ct = @job.assets.size
+  (MAX_ASSETS - @ct.to_i).times {@job.assets.build}
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @job }
@@ -46,8 +47,10 @@ class JobsController < ApplicationController
   # GET /jobs/1/edit
   def edit
     @job = current_member.jobs.find(params[:id])
-    @ct = @job.assets.count
-    (MAX_ASSETS - @ct).times {@job.assets.build}
+    @ct = @job.assets.size
+
+    (MAX_ASSETS - @ct.to_i).times {@job.assets.build}
+
   end
 
   # POST /jobs
@@ -59,6 +62,7 @@ class JobsController < ApplicationController
 
     respond_to do |format|
       if @job.save
+
         format.html { redirect_to @job, notice: 'The stuff you want done was successfully created.' }
         format.json { render json: @job, status: :created, location: @job }
       else
@@ -76,6 +80,7 @@ class JobsController < ApplicationController
 
     respond_to do |format|
       if @job.update_attributes(job_params)
+
         format.html { redirect_to @job, notice: 'The stuff you want done was successfully updated.' }
         format.json { head :no_content }
       else
