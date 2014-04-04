@@ -40,7 +40,9 @@
     <%= f.text_area :body %>
   </div>
 
+
   <div class="field">
+	<%= link_to 'Upload Images (Optional)*', '#', :id => 'upload_assets_link', :onclick => "$('#upload_assets').slideDown();" %>
 	<%= render "asset", :f => f %>
   </div>
 

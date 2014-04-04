@@ -22,15 +22,15 @@ pre {
   font-size: 11px;
 }
 
-
-
-
-
 .tableassets {
 		table {
 			border-collapse: collapse;
+			table-layout: fixed;
 			}
-		 td {
+		 th, td {
+		 	border: 1px solid black;
+		 	overflow: hidden;
+		 	width: 100px;
 			padding: 5px;
 			}
 
@@ -419,6 +419,9 @@ tr {
 
 }
 
+#upload_assets {
+	display: none;
+}
 
 
 

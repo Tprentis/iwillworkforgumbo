@@ -48,7 +48,6 @@ class JobsController < ApplicationController
   def edit
     @job = current_member.jobs.find(params[:id])
     @ct = @job.assets.count
-
     (MAX_ASSETS - @ct).times {@job.assets.build}
 
   end
@@ -80,7 +79,6 @@ class JobsController < ApplicationController
 
     respond_to do |format|
       if @job.update_attributes(job_params)
-
         format.html { redirect_to @job, notice: 'The stuff you want done was successfully updated.' }
         format.json { head :no_content }
       else

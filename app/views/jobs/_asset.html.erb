@@ -1,4 +1,4 @@
-
+<div id="upload_assets">
 <table class="tableassets">
 	<th>
 		You Can Upload
@@ -26,7 +26,6 @@
 			<% end %>
 		<% end %>
 
-
 		<%= f.fields_for :assets do |asset| %>
 	  		<% if asset.object.new_record? %>
 	  		<td>
@@ -43,3 +42,5 @@
 	  	<% end %>
 	</tr>
 </table>
+	<%= link_to 'Hide Images', '#', :id => 'upload_assets_link', :onclick => "$('#upload_assets').slideUp();" %>
+</div>
