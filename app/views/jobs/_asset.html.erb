@@ -1,31 +1,25 @@
 <div id="upload_assets">
-<table class="tableassets">
-	<th>
-		You Can Upload
-		<% if ((MAX_ASSETS - @ct.to_i) < MAX_ASSETS) %>
-			An Additional
-		<% end %>
-			<%= (MAX_ASSETS - @ct.to_i) %> Image(s)
-	</th>
-
+You Can Upload
+<% if ((MAX_ASSETS - @ct.to_i) < MAX_ASSETS) %>
+	An Additional
+<% end %>
+	<%= (MAX_ASSETS - @ct.to_i) %> Image(s)
+<table id="tableassets">
 	<tr>
-	  	<%= div_for @job.assets do |asset| %>
-			<% unless asset.new_record? %>
-				<td>
-					<table class="tableassets">
-						<tr><td>
-					<%= link_to(image_tag(asset.image.url(:thumbnail)),asset.image.url(:original))  %>
-						</td></tr>
-
-						<tr><td>
-					<%= link_to "(Remove)",job_asset_path(@job.id, asset.id), data: {confirm: 'Are you sure?'}, :method => :delete, :onclick => "$(this).up('.asset').remove()" %>
-						</td></tr>
-
-					</table>
-				</td>
-			<% end %>
+  	<%= div_for @job.assets do |asset| %>
+		<% unless asset.new_record? %>
+			<td>
+				<table>
+					<tr><td>
+						<%= link_to(image_tag(asset.image.url(:thumbnail)),asset.image.url(:original))  %>
+					</td></tr>
+					<tr><td>
+						<%= link_to "(Remove)",job_asset_path(@job.id, asset.id), data: {confirm: 'Are you sure?'}, :method => :delete, :onclick => "$(this).up('.asset').remove()" %>
+					</td></tr>
+				</table>
+			</td>
 		<% end %>
-
+	<% end %>
 		<%= f.fields_for :assets do |asset| %>
 	  		<% if asset.object.new_record? %>
 	  		<td>

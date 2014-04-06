@@ -22,16 +22,16 @@ pre {
   font-size: 11px;
 }
 
-.tableassets {
+#tableassets {
 		table {
 			border-collapse: collapse;
-			table-layout: fixed;
+			cellspacing: 5px;
 			}
 		 th, td {
-		 	border: 1px solid black;
+
 		 	overflow: hidden;
-		 	width: 100px;
-			padding: 5px;
+		 	width: 10%;
+			padding: 1px;
 			}
 
 }
